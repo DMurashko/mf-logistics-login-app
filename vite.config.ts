@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite';
+import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
-import { federation } from '@module-federation/vite';
+import {federation} from '@module-federation/vite';
 
 export default defineConfig({
   plugins: [
@@ -9,7 +9,9 @@ export default defineConfig({
       filename: 'remoteEntry.js',
       dts: false,
       exposes: {
-        './LoginPage': './src/pages/LoginPage.tsx',
+        './LoginPage': './src/features/login/pages/LoginPage.tsx',
+        './RegisterPage': './src/features/registration/pages/RegisterPage.tsx',
+        './auth': './src/features/auth/index.ts',
       },
       remotes: {
         ui_library: {

@@ -1,4 +1,6 @@
-/* tslint:disable */
+/* eslint-disable */
+// tslint:disable
+/**
 /**
  * API Documentation
  * The API description
