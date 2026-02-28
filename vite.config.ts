@@ -30,6 +30,8 @@ export default defineConfig({
         '@mui/material': { singleton: true },
         '@emotion/react': { singleton: true },
         '@emotion/styled': { singleton: true },
+        '@tanstack/react-query': { singleton: true },
+        'react-router-dom': { singleton: true },
       },
     }),
     react(),

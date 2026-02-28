@@ -33,3 +33,12 @@ declare module 'ui_library/Theme' {
   export const ThemeProvider: React.FC<ThemeProviderProps>;
   export const theme: Theme;
 }
+
+declare module 'ui_library/NotificationContext' {
+  export const NotificationProvider: React.FC<{ children: React.ReactNode }>;
+  export function useNotification(): {
+    showSuccess: (message: string) => void;
+    showError: (message: string) => void;
+  };
+  export function getErrorMessage(error: unknown): string;
+}

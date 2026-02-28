@@ -1,23 +1,26 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import { Button } from 'ui_library/Button';
 import { Input } from 'ui_library/Input';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
+import Link from '@mui/material/Link';
+import { NotificationProvider } from 'ui_library/NotificationContext';
 import { useRegisterMutation } from '../hooks/useRegisterMutation';
 
 export interface RegisterPageProps {
   onRegister?: () => void;
 }
 
-export const RegisterPage = ({ onRegister }: RegisterPageProps) => {
+const RegisterPageContent = ({ onRegister }: RegisterPageProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
-  const { mutate: register, isPending, error } = useRegisterMutation(onRegister);
+  const { mutate: register, isPending } = useRegisterMutation(onRegister);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -99,12 +102,6 @@ export const RegisterPage = ({ onRegister }: RegisterPageProps) => {
             autoComplete="new-password"
           />
 
-          {error && (
-            <Typography variant="body2" color="error" textAlign="center">
-              Registration failed. Please try again.
-            </Typography>
-          )}
-
           <Button
             type="submit"
             variant="contained"
@@ -117,7 +114,20 @@ export const RegisterPage = ({ onRegister }: RegisterPageProps) => {
             {isPending ? 'Registering...' : 'Register'}
           </Button>
         </Box>
+
+        <Typography variant="body2" textAlign="center">
+          Already have an account?{' '}
+          <Link component={RouterLink} to="/" underline="hover">
+            Sign In
+          </Link>
+        </Typography>
       </Paper>
     </Box>
   );
 };
+
+export const RegisterPage = (props: RegisterPageProps) => (
+  <NotificationProvider>
+    <RegisterPageContent {...props} />
+  </NotificationProvider>
+);
