@@ -12,6 +12,7 @@ export default defineConfig({
         './LoginPage': './src/features/login/pages/LoginPage.tsx',
         './RegisterPage': './src/features/registration/pages/RegisterPage.tsx',
         './auth': './src/features/auth/index.ts',
+        './api': './src/api/index.ts',
       },
       remotes: {
         ui_library: {
@@ -32,6 +33,7 @@ export default defineConfig({
         '@emotion/styled': { singleton: true },
         '@tanstack/react-query': { singleton: true },
         'react-router-dom': { singleton: true },
+        axios: { singleton: true },
       },
     }),
     react(),
